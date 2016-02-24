@@ -14,7 +14,8 @@ import React, {
 } from 'react-native';
 var {NativeModules}=require('react-native');
 var rnToastAndroid = NativeModules.RNToastAndroid;
-rnToastAndroid.show('Hello Toast of native', 0);
+
+rnToastAndroid.show('Hello Toast of native', rnToastAndroid.SHORT);
 
 
 class RNJava extends Component {

@@ -9,8 +9,6 @@ import com.facebook.react.bridge.ReactMethod;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
 public class RNToastModule extends ReactContextBaseJavaModule {
 
     private static final String DURAION_SHORT_KEY = "SHORT";
@@ -26,7 +24,7 @@ public class RNToastModule extends ReactContextBaseJavaModule {
         return "RNToastAndroid";
     }
 
-    @Nullable
+
     @Override
     public Map<String, Object> getConstants() {
         final Map<String, Object> constants = new HashMap<>();
