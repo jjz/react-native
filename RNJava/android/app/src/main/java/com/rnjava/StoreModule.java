@@ -2,6 +2,7 @@ package com.rnjava;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
@@ -42,6 +43,14 @@ public class StoreModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void addUser(String userName, String password, Callback successCallback, Callback errorCallback) {
         try {
+            if (TextUtils.isEmpty(userName)) {
+                errorCallback.invoke("user name is empty");
+                return;
+            }
+            if (TextUtils.isEmpty(password)) {
+                errorCallback.invoke("password is empty");
+                return;
+            }
             preferences.edit().putString(USER_NAME, userName).commit();
             preferences.edit().putString(PASSWORD, password).commit();
             successCallback.invoke("add user success");
