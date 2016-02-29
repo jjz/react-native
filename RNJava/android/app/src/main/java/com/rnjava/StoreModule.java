@@ -44,7 +44,7 @@ public class StoreModule extends ReactContextBaseJavaModule {
         try {
             preferences.edit().putString(USER_NAME, userName).commit();
             preferences.edit().putString(PASSWORD, password).commit();
-            successCallback.invoke();
+            successCallback.invoke("add user success");
         } catch (Exception e) {
             e.printStackTrace();
             errorCallback.invoke(e.getMessage());

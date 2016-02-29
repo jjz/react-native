@@ -10,11 +10,19 @@ import React, {
     Text,
     View,
     RNToastAndroid,
+    StoreModule,
 
 } from 'react-native';
 var {NativeModules}=require('react-native');
 var rnToastAndroid = NativeModules.RNToastAndroid;
 rnToastAndroid.show('Hello Toast of native', 0);
+var storeModule=NativeModules.StoreModule;
+storeModule.addUser("jjz","123456",(msg)=>{
+    alert(msg);
+  },(errorMsg)=>{
+    alert(errorMsg)
+});
+
 
 
 class RNJava extends Component {
