@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import{NativeModules} from 'react-native';
 
-var RNAlert =NativeModules.RNAlert;
+var RNAlert =NativeModules.RNIOSAlert;
 
 
 class RNIos extends Component {

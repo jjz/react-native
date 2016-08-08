@@ -1,9 +1,8 @@
 
 
-#import "RNAlert.h"
-#import <UIKit/UIKit.h>
+#import "RNIOSAlert.h"
 
-@implementation RNAlert
+@implementation RNIOSAlert
 
 RCT_EXPORT_MODULE();
 
