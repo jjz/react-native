@@ -4,55 +4,60 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from "react";
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import{NativeModules} from 'react-native';
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    NativeModules,
+    TouchableOpacity
+} from "react-native";
 
-var RNAlert =NativeModules.RNIOSAlert;
+var RNIOSAlert = NativeModules.RNIOSAlert;
 
 
 class RNIos extends Component {
-  render() {
-    RNAlert.show('from react native ');
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
+    render() {
+
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity onPress={()=>RNIOSAlert.show('from react native ')}>
+                    <Text>Alert</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=> {
+                    var date = new Date();
+                    RNIOSAlert.showTime(
+                        {
+                            time: date.getTime()
+                        }
+                    )
+                }}>
+                    <Text>Time</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
 });
 
 AppRegistry.registerComponent('RNIos', () => RNIos);
