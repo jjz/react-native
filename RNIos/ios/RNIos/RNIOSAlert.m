@@ -3,7 +3,10 @@
 #import "RNIOSAlert.h"
 #import "RCTConvert.h"
 
-@implementation RNIOSAlert
+
+@implementation RNIOSAlert{
+  RCTResponseSenderBlock _alertCallback;
+}
 
 RCT_EXPORT_MODULE();
 
@@ -20,6 +23,25 @@ RCT_EXPORT_METHOD(showTime:(NSDictionary*)dict){
   [alertView show];
 
   
+}
+
+
+RCT_EXPORT_METHOD(showAlertAndCallback:(RCTResponseSenderBlock)callback){
+  _alertCallback=callback;
+  UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"react-native" message:@"是否继续？" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"继续", nil];
+  [alertView show];
+
+  
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+  if (buttonIndex==0) {
+    _alertCallback(@[@"cancel",]);
+  }else{
+    _alertCallback(@[[NSNull null],@1]);
+  }
+  
+
 }
 
 

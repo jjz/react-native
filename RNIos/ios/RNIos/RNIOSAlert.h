@@ -3,6 +3,6 @@
 #import <UIKit/UIKit.h>
 #import "RCTBridgeModule.h"
 
-@interface RNIOSAlert : NSObject<RCTBridgeModule>
+@interface RNIOSAlert : NSObject<RCTBridgeModule,UIAlertViewDelegate>
 
 @end
