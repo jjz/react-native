@@ -6,6 +6,10 @@
 
 @implementation RNIOSAlert{
   RCTResponseSenderBlock _alertCallback;
+  RCTPromiseResolveBlock _resolveBlock;
+  RCTPromiseRejectBlock _rejectBlock;
+  
+  
 }
 
 RCT_EXPORT_MODULE();
@@ -25,6 +29,15 @@ RCT_EXPORT_METHOD(showTime:(NSDictionary*)dict){
   
 }
 
+RCT_REMAP_METHOD(alertUserPromise, resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)reject){
+  _resolveBlock=resolver;
+  _rejectBlock=reject;
+  UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"react-native" message:@"使用Promise？" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"继续", nil];
+  [alertView show];
+  
+
+  
+}
 
 RCT_EXPORT_METHOD(showAlertAndCallback:(RCTResponseSenderBlock)callback){
   _alertCallback=callback;
@@ -33,16 +46,27 @@ RCT_EXPORT_METHOD(showAlertAndCallback:(RCTResponseSenderBlock)callback){
 
   
 }
-
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
   if (buttonIndex==0) {
-    _alertCallback(@[@"cancel",]);
+    NSError * err=[NSError errorWithDomain:@"test" code:0 userInfo:nil];
+    _rejectBlock(@"0",@"cancel",err);
   }else{
-    _alertCallback(@[[NSNull null],@1]);
+    _resolveBlock(@[@1]);
   }
-  
+
 
 }
+
+
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//  if (buttonIndex==0) {
+//    _alertCallback(@[@"cancel",]);
+//  }else{
+//    _alertCallback(@[[NSNull null],@1]);
+//  }
+//  
+//
+//}
 
 
 @end

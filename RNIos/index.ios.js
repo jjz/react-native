@@ -30,6 +30,24 @@ class RNIos extends Component {
         });
     }
 
+    _alertUsePromise() {
+        RNIOSAlert.alertUserPromise().then((datas)=> {
+            console.warn('data', datas);
+        }).catch((err)=> {
+            console.warn('err', err);
+        });
+    }
+
+    async  _alertUseAsync() {
+        try {
+            var datas = await RNIOSAlert.alertUserPromise();
+            console.warn('data', datas);
+        } catch (e) {
+            console.warn('err', e);
+        }
+    }
+
+
     render() {
 
         return (
@@ -56,6 +74,12 @@ class RNIos extends Component {
                     style={styles.btn}
                     onPress={()=>this._alertCallback()}>
                     <Text>Alert Callback</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={()=>this._alertUseAsync()}>
+                    <Text>Alert async</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={()=>this._alertUsePromise()}>
+                    <Text>Alert promises</Text>
                 </TouchableOpacity>
             </View>
         )
