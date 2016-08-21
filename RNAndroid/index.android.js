@@ -16,17 +16,17 @@ var {NativeModules}=require('react-native');
 var rnToastAndroid = NativeModules.RNToastAndroid;
 rnToastAndroid.show('Hello Toast of native', 0);
 var storeModule = NativeModules.StoreModule;
-// storeModule.addUser("jjz","123456",(msg)=>{
-//     alert(msg);
-//   },(errorMsg)=>{
-//     alert(errorMsg)
+storeModule.addUser("jjz","123456",(msg)=>{
+    alert(msg);
+  },(errorMsg)=>{
+    alert(errorMsg)
+});
+//
+// storeModule.login('jjz', '123456').then((map)=> {
+//     alert(map['user_id']);
+// }, (code, message)=> {
+//     alert(message);
 // });
-
-storeModule.login('jjz', '123456').then((map)=> {
-    alert(map['user_id']);
-}, (code, message)=> {
-    alert(message);
-})
 
 
 class RNJava extends Component {
