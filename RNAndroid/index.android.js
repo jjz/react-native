@@ -3,29 +3,28 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
-import React, {
+import React, {Component} from "react";
+import {
     AppRegistry,
-    Component,
     StyleSheet,
     Text,
     View,
     RNToastAndroid,
-    StoreModule,
-
-} from 'react-native';
+    StoreModule
+} from "react-native";
 var {NativeModules}=require('react-native');
 var rnToastAndroid = NativeModules.RNToastAndroid;
 rnToastAndroid.show('Hello Toast of native', 0);
-var storeModule=NativeModules.StoreModule;
+var storeModule = NativeModules.StoreModule;
 // storeModule.addUser("jjz","123456",(msg)=>{
 //     alert(msg);
 //   },(errorMsg)=>{
 //     alert(errorMsg)
 // });
 
-storeModule.login('jjz','123456').then((map)=>{
+storeModule.login('jjz', '123456').then((map)=> {
     alert(map['user_id']);
-  },(code,message)=>{
+}, (code, message)=> {
     alert(message);
 })
 
